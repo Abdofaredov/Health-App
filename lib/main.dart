@@ -3,13 +3,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:healthapp/constants.dart';
 import 'package:healthapp/cubits/ShopView/shop_view_cubit.dart';
 import 'package:healthapp/cubits/UserRecord_Cubit/user_record_cubit.dart';
 import 'package:healthapp/cubits/auth_cupit/authcupit_cubit.dart';
 import 'package:healthapp/cubits/navBarCubit/cubit/nav_bar_cubit_cubit.dart';
 import 'package:healthapp/data/services/web_services/dish_cupit/get_dishes_cubit.dart';
 import 'package:healthapp/firebase_options.dart';
+import 'package:healthapp/shared/networks/local/cach_helper.dart';
 import 'package:healthapp/views/auth/logIn_view/logIn_view.dart';
+import 'package:healthapp/views/auth/onpoarding_view.dart/onboarding.dart';
 import 'package:healthapp/views/auth/signUp_view/sign_Up_view.dart';
 import 'package:healthapp/views/auth/signUp_view/rigestertion_view.dart';
 import 'package:healthapp/views/auth/welcome_view/welcomView.dart';
@@ -24,6 +27,22 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await CacheHelper.init();
+  Widget widget;
+
+  token = CacheHelper.getData(key: 'token');
+
+  bool onBoarding = CacheHelper.getData(key: 'onBoarding') ?? false;
+  if (onBoarding) {
+    if (token != null) {
+      widget = const homeView();
+    } else {
+      widget = const LoginView();
+    }
+  } else {
+    widget = const OnBoardingScreen();
+  }
+
   var user = FirebaseAuth.instance.currentUser;
   if (user == null) {
     islogin = false;
@@ -86,6 +105,7 @@ class _MyAppState extends State<MyApp> {
             },
             home: islogin == true ? const mainapp() : const welcomeScreen(),
             theme: ThemeData(
+                useMaterial3: false,
                 primaryColor: const Color(0xFFFFDADA),
                 primarySwatch: Colors.green),
             routes: {
@@ -93,6 +113,8 @@ class _MyAppState extends State<MyApp> {
               homeView.id: (context) => const homeView(),
               settingView.id: (context) => const settingView(),
               welcomeScreen.welcomeScreenID: (context) => const welcomeScreen(),
+              OnBoardingScreen.onBoardingScreenID: (context) =>
+                  const OnBoardingScreen(),
               LoginView.loginViewID: (context) => const LoginView(),
               SignUpview.signUpID: (context) => const SignUpview(),
               rigestrtionPage.rigestrtionId: (context) =>

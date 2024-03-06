@@ -14,3 +14,4 @@ List<String> sectionsText = const [
   'fats and Healthy oils',
   'supplments',
 ];
+dynamic token = '';
