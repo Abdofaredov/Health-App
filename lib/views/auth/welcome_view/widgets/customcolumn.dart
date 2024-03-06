@@ -48,26 +48,21 @@ class CustomColumnForWelcomeScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(right: 10.w),
                 child: CustomButton(
-                  onpressd: () {
-                    token = CacheHelper.getData(key: 'token');
-                    // Widget widget;
-
+                  onPressed: () {
+                    var token = CacheHelper.getData(key: 'token');
                     bool onBoarding =
                         CacheHelper.getData(key: 'onBoarding') ?? false;
+
                     if (onBoarding) {
                       if (token != null) {
-                        // widget = const homeView();
-                        Navigator.pushReplacementNamed(
-                            context, OnBoardingScreen.onBoardingScreenID);
+                        Navigator.pushReplacementNamed(context, homeView.id);
                       } else {
-                        // widget = const LoginView();
                         Navigator.pushReplacementNamed(
                             context, LoginView.loginViewID);
                       }
                     } else {
                       Navigator.pushReplacementNamed(
                           context, OnBoardingScreen.onBoardingScreenID);
-                      // widget = const OnBoardingScreen();
                     }
                   },
                   child: '   التالي   ',

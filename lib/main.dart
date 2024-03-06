@@ -28,20 +28,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await CacheHelper.init();
-  Widget widget;
-
-  token = CacheHelper.getData(key: 'token');
-
-  bool onBoarding = CacheHelper.getData(key: 'onBoarding') ?? false;
-  if (onBoarding) {
-    if (token != null) {
-      widget = const homeView();
-    } else {
-      widget = const LoginView();
-    }
-  } else {
-    widget = const OnBoardingScreen();
-  }
 
   var user = FirebaseAuth.instance.currentUser;
   if (user == null) {

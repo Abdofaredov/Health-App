@@ -4,9 +4,9 @@ import 'package:healthapp/constants.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(
-      {super.key, required this.child, required this.onpressd, this.color});
+      {super.key, required this.child, required this.onPressed, this.color});
   final String child;
-  final void Function()? onpressd;
+  final void Function()? onPressed;
 
   final Color? color;
   @override
@@ -21,7 +21,7 @@ class CustomButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(23),
           ),
           color: Colors.white,
-          onPressed: onpressd,
+          onPressed: onPressed,
           child: Row(
             children: [
               Text(

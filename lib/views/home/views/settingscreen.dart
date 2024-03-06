@@ -27,7 +27,7 @@ class _settingViewState extends State<settingView> {
             height: 200,
           ),
           CustomButton(
-            onpressd: () async {
+            onPressed: () async {
               await FirebaseAuth.instance.signOut();
               // ignore: use_build_context_synchronously
               BlocProvider.of<AuthCubit>(context).signout();

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healthapp/main_app.dart';
 import 'package:healthapp/views/auth/onpoarding_view.dart/onpoarding_screen.dart';
+import 'package:healthapp/views/home/views/homeView.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key});
@@ -53,7 +54,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: isEmailverifyed
-          ? const OnpoardingScreen()
+          ? const homeView()
           : const Center(
               child: Column(
                 children: [Text("please verifing your Email ")],
