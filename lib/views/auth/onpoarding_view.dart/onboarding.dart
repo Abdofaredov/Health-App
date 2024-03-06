@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:healthapp/components/components.dart';
 import 'package:healthapp/constants.dart';
 import 'package:healthapp/shared/networks/local/cach_helper.dart';
+import 'package:healthapp/shared/styles/icon_broken.dart';
 import 'package:healthapp/views/auth/logIn_view/logIn_view.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -53,11 +54,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffFFFFFF),
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
         actions: [
           defaultTextButton(
             text: 'Skip',
-            color: Colors.white,
+            color: Colors.green,
             fontWeight: FontWeight.bold,
             size: 16,
             function: submit,
@@ -118,7 +122,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   },
                   shape: const CircleBorder(),
                   foregroundColor: Colors.white,
-                  child: const Icon(Icons.arrow_forward_ios),
+                  child: const Icon(IconBroken.Arrow___Right),
                 )
               ],
             ),
@@ -129,13 +133,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 
   Widget buildBoardingItem(BoardingModel model) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsetsDirectional.only(top: 60),
             child: Container(
-              height: 320,
-              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.25,
+              width: MediaQuery.of(context).size.width * 0.5,
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(model.image), fit: BoxFit.fill),

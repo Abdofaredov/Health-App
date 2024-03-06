@@ -1,9 +1,8 @@
+// ignore: file_names
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:healthapp/main_app.dart';
-import 'package:healthapp/views/auth/onpoarding_view.dart/onpoarding_screen.dart';
 import 'package:healthapp/views/home/views/homeView.dart';
 
 class VerifyEmailPage extends StatefulWidget {
@@ -23,7 +22,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     super.initState();
     if (!isEmailverifyed) {
       sendEmailverifiction();
-      timer = Timer.periodic(Duration(seconds: 3), (_) {
+      timer = Timer.periodic(const Duration(seconds: 3), (_) {
         checkEmailverified();
       });
     }

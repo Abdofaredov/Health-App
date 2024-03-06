@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthapp/constants.dart';
+import 'package:healthapp/bloc_observer.dart';
 import 'package:healthapp/cubits/ShopView/shop_view_cubit.dart';
 import 'package:healthapp/cubits/UserRecord_Cubit/user_record_cubit.dart';
 import 'package:healthapp/cubits/auth_cupit/authcupit_cubit.dart';
@@ -24,6 +24,8 @@ import 'package:healthapp/main_app.dart';
 bool? islogin;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
